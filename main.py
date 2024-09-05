@@ -7,7 +7,7 @@ import logging
 # new package for cron task
 import aiocron
 import aiohttp
-import datetime import datetime, time
+from datetime import datetime, time
 
 
 app = FastAPI()
@@ -20,7 +20,7 @@ async def is_active_hours():
 @aiocron.crontab('*/5 * * * *')
 async def self_ping():
     async with aiohttp.ClientSession() as session:
-        async with session.get('https://keepapi1.onrender.com/health') as response:
+        async with session.get('https://keeponapi1.onrender.com/health') as response:
             print(f"Health check response: {response.status}")
    
 @app.on_event("startup")
